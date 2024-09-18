@@ -4,13 +4,14 @@ import { ModalComponent } from '../../modal/modal.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientsService } from '../../services/clients.service';
 import { DatePipe } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-client-list',
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.css',
   standalone: true,
-  imports: [ModalComponent,FormsModule,DatePipe,ReactiveFormsModule]
+  imports: [NgxPaginationModule,ModalComponent,FormsModule,DatePipe,ReactiveFormsModule]
 })
 export class ClientListComponent implements OnInit{
   
@@ -26,8 +27,8 @@ export class ClientListComponent implements OnInit{
     tel: new FormControl(''),
   })
 
-
-
+  p:number = 1;
+  total : number = 0
   buttonValue!:string;
 
   public constructor(private router: Router, private clientService: ClientsService) {}
@@ -58,9 +59,14 @@ export class ClientListComponent implements OnInit{
     this.clientService.getAllClients().subscribe({
       next: (data: any) => {
         this.clients = data;
+        this.total=data.total;
       }
     })
   }
+  pageChangeEvent(event: number){
+    this.p = event;
+    this.fetchClients();
+}
   getComplaintlist(): void {
     this.clientService.getComplaints().subscribe((data: any[]) => {
       this.complaintList = data;

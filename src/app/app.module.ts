@@ -9,6 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { ErrorPopupComponent } from './error-popup/error-popup.component';
 import { provideHttpClient} from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     AppRoutingModule,
     AppComponent,
     RouterModule,
+    NgxPaginationModule,
     ErrorPopupComponent,
     LoginComponent,
     ReactiveFormsModule,

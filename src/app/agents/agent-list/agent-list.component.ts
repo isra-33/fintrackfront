@@ -3,11 +3,12 @@ import { FormGroup, FormControl , FormsModule, ReactiveFormsModule} from '@angul
 import { Router ,ActivatedRoute} from '@angular/router';
 import { AgentsService } from '../../services/agents.service';
 import { ModalComponent } from '../../modal/modal.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-agent-list',
   standalone: true,
-  imports: [ModalComponent,ReactiveFormsModule,FormsModule],
+  imports: [NgxPaginationModule,ModalComponent,ReactiveFormsModule,FormsModule],
   templateUrl: './agent-list.component.html',
   styleUrl: './agent-list.component.css'
 })
@@ -17,6 +18,8 @@ export class AgentListComponent {
   buttonValue:string=''
   agentList: any[] = [];
   selectedAgent: any;
+  p:number = 1;
+  total : number = 0
 
   agentToAdd = new FormGroup({
     agentName: new FormControl(''),
@@ -38,9 +41,15 @@ export class AgentListComponent {
     this.agentService.getAllAgents().subscribe({
       next: (data: any) => {
         this.agentList = data;
+        this.total=data.total;
+
       }
     })
   }
+  pageChangeEvent(event: number){
+    this.p = event;
+    this.fetchAgents();
+}
   ngOnInit(): void {
     this.fetchAgents();
   }

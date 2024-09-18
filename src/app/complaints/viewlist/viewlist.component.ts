@@ -4,13 +4,14 @@ import { ModalComponent } from '../../modal/modal.component';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComplaintService } from '../../services/complaint.service';
 import { DatePipe } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-viewlist',
   templateUrl: './viewlist.component.html',
   styleUrl: './viewlist.component.css',
   standalone: true,
-  imports: [ModalComponent, FormsModule, DatePipe, ReactiveFormsModule],
+  imports: [NgxPaginationModule,ModalComponent, FormsModule, DatePipe, ReactiveFormsModule],
 })
 export class ViewlistComponent implements OnInit {
 
@@ -35,7 +36,10 @@ export class ViewlistComponent implements OnInit {
   agents: any[] = [];
 
   selectedComplaint: any ;
-   
+  
+  p:number = 1;
+  total : number = 0
+
   public constructor(private router: Router, private complaintService: ComplaintService) {}
 
   getCategory(): void {
@@ -64,10 +68,14 @@ export class ViewlistComponent implements OnInit {
     this.complaintService.getComplaints().subscribe({
       next: (data: any) => {
         this.complaints = data;
+        this.total=data.total;
       }
     })
   }
-  
+  pageChangeEvent(event: number){
+      this.p = event;
+      this.fetchComplaints();
+  }
   ngOnInit(): void {
     this.getAgents();
     this.getCategory();
