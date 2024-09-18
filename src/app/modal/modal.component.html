@@ -1,0 +1,14 @@
+<div 
+  (click)="discard()"
+  class="bg-gray-600 bg-opacity-40 rounded-lg shadow-lg p-6 mx-auto my-4 absolute inset-0 w-full z-50">
+
+    <div 
+    (click)="onModalContentClick($event)"
+    class="bg-white rounded-lg shadow-lg p-6 mx-auto my-4 w-1/2">
+
+      <div> 
+        <ng-content></ng-content>   
+      </div> 
+    </div>
+  
+</div>

@@ -1,0 +1,41 @@
+<div class="flex h-screen bg-gray-100">
+    <!-- sidebar -->
+    <div class="hidden md:flex flex-col w-64 bg-white border-b">
+        <div class="flex items-center justify-center h-16 bg-white border-b">
+            <span class="text-white font-bold uppercase">
+                <img class="max-w-full h-auto" src="assets/images/fulllogo.png" alt="logo">
+            </span>
+        </div>
+        
+        <div class="flex flex-col flex-1 overflow-y-auto">
+            <nav class="flex-1 px-2 py-4 bg-gray-800">
+                @for (item of menu; track $index) {
+                    <a [routerLink]="item.path"
+                        class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
+                        <span [innerHTML]="getSafeHtml(item.icon)"></span>
+                        {{ item.option }}
+                    </a>
+                }
+            </nav>
+        </div>
+    </div>
+    <!-- Main content -->
+    <div class="flex flex-col flex-1 overflow-y-auto">
+
+        <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+            <div class="flex items-center px-4 mr-4  cursor-pointer py-1.5 font-sans text-base font-semibold leading-relaxed tracking-normal text-inherit antialiased">
+                {{firstSegment}}
+            </div>
+            <div class="flex items-center pr-4">
+
+                <button (click)="logout()">
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

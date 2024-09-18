@@ -1,0 +1,73 @@
+<!-- Dashboard Cards -->
+<div class="grid grid-cols-5 gap-6 p-6">
+    <!-- Dashboard Card 1 -->
+    <div class="relative flex flex-col break-words rounded-2xl bg-white bg-clip-border text-gray-700 shadow-lg">
+        <div class="p-6">
+            <div class="flex-none">
+                <div class="mb-4">
+                    <h4 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">Total Complaints</h4>
+                    <p class="block font-sans text-base font-light leading-relaxed text-gray-900 antialiased">{{ totalComplaints }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Card 2 -->
+    <div class="relative flex flex-col break-words rounded-2xl bg-white bg-clip-border text-gray-700 shadow-lg">
+        <div class="p-6">
+            <div class="flex-none">
+                <div class="mb-4">
+                    <h4 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">Drafts</h4>
+                    <p class="block font-sans text-base font-light leading-relaxed text-gray-900 antialiased">{{ draft }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Card 3 -->
+    <div class="relative flex flex-col break-words rounded-2xl bg-white bg-clip-border text-gray-700 shadow-lg">
+        <div class="p-6">
+            <div class="flex-none">
+                <div class="mb-4">
+                    <h4 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">Resolved</h4>
+                    <p class="block font-sans text-base font-light leading-relaxed text-gray-900 antialiased">{{ resolved }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Card 4 -->
+    <div class="relative flex flex-col break-words rounded-2xl bg-white bg-clip-border text-gray-700 shadow-lg">
+        <div class="p-6">
+            <div class="flex-none">
+                <div class="mb-4">
+                    <h4 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">In Progress</h4>
+                    <p class="block font-sans text-base font-light leading-relaxed text-gray-900 antialiased">{{ opened }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Card 5 -->
+    <div class="relative flex flex-col break-words rounded-2xl bg-white bg-clip-border text-gray-700 shadow-lg">
+        <div class="p-6">
+            <div class="flex-none">
+                <div class="mb-4">
+                    <h4 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">Canceled</h4>
+                    <p class="block font-sans text-base font-light leading-relaxed text-gray-900 antialiased">{{ canceled }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart 
+<div class="row">
+    <canvas id="ComplaintChart"></canvas>
+</div> -->
+<div class="row">
+    <echarts 
+    [initOpts]="initOpts" 
+    [options]="options">
+    </echarts>
+</div>
