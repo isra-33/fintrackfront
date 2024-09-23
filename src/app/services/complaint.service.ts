@@ -46,5 +46,11 @@ export class ComplaintService {
     return this.http.get<number>(`${API_URL}/complaints/count/status?status=${status}`);
   }
   
+  getAssignedComplaints(agentId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${API_URL}/complaints/assigned-complaints`, {
+      headers: { 'agentId': agentId.toString() }
+    });
+  }
+  
   
 }

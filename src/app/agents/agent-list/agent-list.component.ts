@@ -20,17 +20,24 @@ export class AgentListComponent {
   selectedAgent: any;
   p:number = 1;
   total : number = 0
+  roles: string[] = [];
 
   agentToAdd = new FormGroup({
     agentName: new FormControl(''),
-    agentEmail: new FormControl('')
+    agentEmail: new FormControl(''),
+    password: new FormControl(''),
+    role: new FormControl('')
   })
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private agentService: AgentsService) 
   {}
-
+  getRoles(): void {
+    this.agentService.getRoles().subscribe((data: string[]) => {
+      this.roles = data;
+    });
+  }
   navigateTo(id: number, editMode = false) {
     this.router.navigateByUrl(`/agent/details/${id}?edit_mode=${editMode}`);
   }
@@ -51,6 +58,7 @@ export class AgentListComponent {
     this.fetchAgents();
 }
   ngOnInit(): void {
+    this.getRoles();
     this.fetchAgents();
   }
   openModal(buttonValue: string,item: any) {
@@ -73,11 +81,11 @@ export class AgentListComponent {
   }
   confirmRemove(item:any,){
     this.selectedAgent=item;
-    var currentId=this.selectedAgent.id
+    let currentId=this.selectedAgent.id
     this.onRemove(currentId);
     this.closeModal();
     this.fetchAgents(); 
-}
+  }
   onRemove(id: number) {
   this.agentService.deleteAgent(id.toString()).subscribe(
     resp => {
@@ -90,8 +98,10 @@ export class AgentListComponent {
       }
     }
   );
-}
-  cancel(){
-  this.closeModal();
-}
+  }
+  cancel(){ this.closeModal();}
+  handleSelectChange(event: any, key: string): void {
+    const value = event.target.value;
+    this.agentToAdd.patchValue({ [key]: value });
+  }
 }

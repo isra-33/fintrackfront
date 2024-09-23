@@ -91,6 +91,25 @@
                         formControlName="agentEmail"
                         class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
+                    <div class="mb-5">
+                        <label for="password" class="mb-3 block text-base font-medium text-[#07074D]">
+                            Password:
+                        </label>
+                        <input type="text" name="password" id="password" placeholder="password" 
+                        formControlName="password"
+                        class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    </div> 
+                    <div class="mb-5">
+                        <label for="role" class="mb-3 block text-base font-medium text-[#07074D]">Role:</label>
+                        <select  formControlName="role"
+                            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" (change)="handleSelectChange($event, 'role')">
+                            @for(item of roles; track $index){
+                                <option  [value]="item">
+                                    {{ item }}
+                                </option>
+                            }
+                        </select>
+                    </div> 
                     <div class="flex items-center justify-center mt-4 space-x-3">
                         <button  type="submit"
                         class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out hover:bg-blue-600 bg-blue-700 rounded text-white px-8 py-2 text-sm">
@@ -98,7 +117,7 @@
                         <button (click)="cancel()" type="reset"
                         class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ml-3 bg-blue-100 transition duration-150 text-blue-700 ease-in-out hover:border-blue-300 hover:bg-blue-200 border rounded px-8 py-2 text-sm" >
                         Cancel</button>
-                      </div>
+                    </div>
         </form>
     </app-modal>
         

@@ -26,4 +26,7 @@ export class AgentsService {
   getComplaints(): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}/complaints`);
   }
+  getRoles(): Observable<any[]> {
+    return this.http.get<any[]>(`${API_URL}/roles`);
+  }
 }
