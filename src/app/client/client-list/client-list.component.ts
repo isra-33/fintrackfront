@@ -22,7 +22,6 @@ export class ClientListComponent implements OnInit{
 
   clientToAdd = new FormGroup({
     clientName: new FormControl(''),
-    clientCardId: new FormControl(''),
     clientMail: new FormControl(''),
     tel: new FormControl(''),
   })
